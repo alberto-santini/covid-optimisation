@@ -10,7 +10,7 @@ It contains optimisation models and software to optimise decisions related to th
 * [Interactive dashboard](https://santini.in/covid/) with results (optimisation of swab testing capacity, Italy case study).
 * [Technical report](https://santini.in/files/tech-rep-swabs.pdf) on the optimisation of swab testing cpacity.
 
-![dashboard-screenshot.png](https://raw.githubusercontent.com/alberto-santini/covid-optimisation/branch/images/dashboard-screenshot.png)
+![dashboard-screenshot.png](https://github.com/alberto-santini/covid-optimisation/raw/master/images/dashboard-screenshot.png)
 
 ### Contents of the repository
 

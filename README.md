@@ -26,9 +26,10 @@ This sections explains in detail how we generate data for the case studies.
 ### Swab tests optimisation - Italy case study
 
 We start from the publicly available data sources:
-    * A list of laboratories which are certified to test swabs for COVID-19: `italy_labs_coords.csv`.
-    * A list of factories in Italy, which are certified to produce test kits: `italy_factories_coords.csv`.
-    * Data about the number of swabs tested each day, region-by-region, released by the Italian Civil Defense department: `dpc-covid19-ita-regioni.csv`.
+
+* A list of laboratories which are certified to test swabs for COVID-19: `italy_labs_coords.csv`.
+* A list of factories in Italy, which are certified to produce test kits: `italy_factories_coords.csv`.
+* Data about the number of swabs tested each day, region-by-region, released by the Italian Civil Defense department: `dpc-covid19-ita-regioni.csv`.
 
 We first estimate how many swabs regions would have liked to test each day, if they had enough reagents.
 This number is calculated from the actual number they tested, times some region-dependent multiplier which we estimate based on news and press releases (see `instance-generator.py` for the precise numbers).

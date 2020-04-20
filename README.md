@@ -10,6 +10,8 @@ It contains optimisation models and software to optimise decisions related to th
 * [Interactive dashboard](https://santini.in/covid/) with results (optimisation of swab testing capacity, Italy case study).
 * [Technical report](https://santini.in/files/tech-rep-swabs.pdf) on the optimisation of swab testing cpacity.
 
+![dashboard-screenshot.png](https://raw.githubusercontent.com/alberto-santini/covid-optimisation/branch/images/dashboard-screenshot.png)
+
 ### Contents of the repository
 
 * Folder `model-implementation` contains the implemented models. The software is written in C++ and uses CMake for configuration. The solver [Gurobi](https://www.gurobi.com/) is necessary to run the software. All software is released under the GPLv3 license (see file `LICENSE`).

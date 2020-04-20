@@ -1,0 +1,145 @@
+region,city,name,city_lat,city_long
+Piemonte,Torino,Molinette,45.07049,7.68682
+Piemonte,Novara,Maggiore della Carità,45.44694,8.62118
+Piemonte,Cuneo,Croce e Carle,44.54702,7.62322
+Piemonte,Torino,Mauriziano,45.07049,7.68682
+Piemonte,Alessandria,SS Antonio e Biagio,44.90924,8.61007
+Piemonte,Torino,CDC SpA,45.07049,7.68682
+Piemonte,Orbassano,San Luigi Gonzaga,45.00547,7.53813
+Piemonte,Ivrea,Ivrea,45.46723,7.87617
+Piemonte,Rivoli,Rivoli,45.07073,7.51465
+Piemonte,Candiolo,Candiolo,44.95858,7.59812
+Piemonte,Vercelli,Sant Andrea,45.32163,8.41989
+Piemonte,Ponderano,Infermi,45.53846,8.05592
+Piemonte,Asti,Cardinal Massaia,44.90162,8.20751
+Piemonte,Torino,Amedeo di Savoia,45.07049,7.68682
+Lombardia,Milano,Unimi,45.46427,9.18951
+Lombardia,Pavia,San Matteo,45.19205,9.15917
+Lombardia,Bergamo,Papa Giovanni XXIII,45.69601,9.66721
+Lombardia,Monza,ASST Monza,45.58005,9.27246
+Lombardia,Brescia,Spedali Civili,45.53558,10.21472
+Lombardia,Legnano,Ovest Milanese,45.59788,8.91506
+Lombardia,Varese,Sette Laghi,45.82058,8.82511
+Lombardia,Lecco,ASST Lecco,45.85589,9.39704
+Lombardia,Milano,Niguarda,45.46427,9.18951
+Lombardia,Milano,Policlinico,45.46427,9.18951
+Lombardia,Vizzolo Pedrabissi,Melegnano e Martesana,45.359233,9.340628
+Lombardia,Cremona,ASST Cremona,45.13325,10.02129
+Lombardia,Seriate,Bergamo Est,45.68532,9.72487
+Lombardia,Treviglio,Bergamo Ovest,45.52081,9.59102
+Lombardia,Milano,San Paolo,45.46427,9.18951
+Lombardia,Milano,San Raffaele,45.46427,9.18951
+Lombardia,Rozzano,Humanitas,45.38193,9.1559
+Lombardia,Milano,Monzino,45.46427,9.18951
+Lombardia,Brescia,ZooBR,45.53558,10.21472
+Lombardia,Pavia,ZooPV,45.19205,9.15917
+Lombardia,Milano,Sacco,45.46427,9.18951
+Liguria,Genova,Unige,44.40478,8.94439
+Liguria,Genova,San Martino,44.40478,8.94439
+Liguria,Bussana di Sanremo,San Remo,43.82871,7.8444
+Liguria,Savona,San Paolo,44.30905,8.47715
+Liguria,La Spezia,ASL Spezzino,44.103,9.82375
+Puglia,Foggia,Ospedali Riuniti,41.45845,15.55188
+Puglia,Lecce,Vito Fazzi,40.35481,18.17244
+Puglia,Bari,Di Venere,41.12066,16.86982
+Puglia,Foggia,ZooFG,41.45845,15.55188
+Puglia,Taranto,ASL,40.46438,17.24707
+Puglia,Barletta,Dimiccoli,41.31429,16.28165
+Puglia,Bari,Uniba,41.12066,16.86982
+Puglia,Putignano,ZooBA,40.85106,17.1219
+Puglia,Acquaviva delle Fonti,Miulli,40.89704,16.8433
+Puglia,Galatina,Santa Caterina Novella,40.17416,18.17032
+Puglia,Brindisi,Di Summa,40.63215,17.93607
+Puglia,San Giovanni Rotondo,Sofferenza,41.70643,15.7277
+Lazio,Roma,Spallanzani,41.89193,12.51133
+Lazio,Roma,Gemelli,41.89193,12.51133
+Lazio,Roma,Tor Vergata,41.89193,12.51133
+Lazio,Roma,Campus Biomedico,41.89193,12.51133
+Lazio,Roma,AOU Sant Andrea,41.89193,12.51133
+Lazio,Roma,Umberto I,41.89193,12.51133
+Lazio,Latina,Goretti,41.46614,12.9043
+Lazio,Roma,Pertini,41.89193,12.51133
+Lazio,Frosinone,Spazziani,41.63976,13.34109
+Lazio,Roma,San Filippo Neri,41.89193,12.51133
+Lazio,Roma,Bambino Gesu,41.89193,12.51133
+Lazio,Roma,San Camillo,41.89193,12.51133
+Lazio,Roma,ZooROMA,41.89193,12.51133
+Lazio,Viterbo,Belcolle,42.41937,12.1056
+Lazio,Roma,IRCSS,41.89193,12.51133
+Lazio,Genzano di Roma,De Santis,41.70706,12.68904
+Lazio,Roma,San Giovanni,41.89193,12.51133
+Valle Aosta,Aosta,Parini,45.73764,7.31722
+Sicilia,Palermo,Giaccone,38.13205,13.33561
+Sicilia,Palermo,ZooPA,38.13205,13.33561
+Sicilia,Catania,Vittorio Emanuele,37.49223,15.07041
+Friuli Venezia Giulia,Trieste,Burlo Garofolo,45.64953,13.77678
+Friuli Venezia Giulia,Trieste,Giuliano Isontina,45.64953,13.77678
+Friuli Venezia Giulia,Udine,Uniud,46.0693,13.23715
+Friuli Venezia Giulia,Pordenone,ASFO,45.95689,12.66051
+Campania,Napoli,San Paolo,40.85216,14.26811
+Campania,Napoli,Unina,40.85216,14.26811
+Campania,Caserta,SS Anna e Sebastiano,41.07262,14.33231
+Campania,Aversa,Giuseppe Moscati,40.97259,14.20745
+Campania,Benevento,San Pio,41.1307,14.77816
+Campania,Nola,Maria della Pieta,40.92606,14.52816
+Campania,Portici,ZooNA,40.81563,14.33716
+Campania,Caserta,ZooCE,41.07262,14.33231
+Campania,Salerno,San Giovanni di Dio,40.67545,14.79328
+Campania,Napoli,Cotugno,40.85216,14.26811
+Molise,Campobasso,Cardarelli,41.55947,14.66737
+Marche,Ancona,UPM,43.5942,13.50337
+Marche,Urbino,ASUR AV1,43.90921,12.9164
+Marche,Jesi,ASUR AV2,43.52142,13.24368
+Marche,Macerata,ASUR AV3,43.29789,13.45293
+Marche,Fermo,ASUR AV4,43.16296,13.72274
+Marche,Ascoli Piceno,ASUR AV5,42.85351,13.57395
+Marche,Pesaro,Ospedali Riuniti Marche Nord,43.90921,12.9164
+Marche,Fermo,ZooFermo,43.16296,13.72274
+Trentino Alto Adige,Bolzano,ASAA,46.49067,11.33982
+Trentino Alto Adige,Trento,Santa Chiara,46.06787,11.12108
+Umbria,Perugia,ZooPG,43.1122,12.38878
+Umbria,Sant'Andrea delle Fratte,Misericordia,43.06115,12.33798
+Calabria,Cosenza,Annunziata,39.2989,16.25307
+Calabria,Catanzaro,Mater Domini,38.88247,16.60086
+Calabria,Reggio Calabria,Nord,38.11047,15.66129
+Calabria,Catanzaro,Ciaccio,38.88247,16.60086
+Abruzzo,Teramo,Caporale,42.66123,13.69901
+Abruzzo,Pescara,Spirito Santo,42.4584,14.20283
+Abruzzo,Chieti,Unich,42.34827,14.16494
+Emilia Romagna,Bologna,Sant Orsola,44.49381,11.33875
+Emilia Romagna,Reggio Emilia,Arcispedale,44.69825,10.63125
+Emilia Romagna,Modena,Policlinico,44.64783,10.92539
+Emilia Romagna,Piacenza,USL,45.05242,9.69342
+Emilia Romagna,Cesena,Pievesestina,44.22177,12.04144
+Emilia Romagna,Parma,LISP,44.79935,10.32618
+Veneto,Padova,Unipd,45.40797,11.88586
+Veneto,Verona,Borgo Roma,45.4299,10.98444
+Veneto,Belluno,ULSS1,46.14262,12.2156
+Veneto,Treviso,ULSS2,45.66673,12.2416
+Veneto,Mestre,ULSS3,45.49167,12.24538
+Veneto,Rovigo,ULSS5,45.06982,11.79022
+Veneto,Monselice,ULSS6,45.239,11.74984
+Veneto,Bassano del Grappa,ULSS7,45.76656,11.72739
+Veneto,Vicenza,ULSS8,45.54672,11.5475
+Veneto,Legnago,ULSS9-1,45.19365,11.30227
+Veneto,San Bonifacio,ULSS9-2,45.39595,11.27352
+Veneto,Villafranca di Verona,ULSS9-3,45.39571,10.88853
+Veneto,Legnaro,ZooPD,45.34238,11.96482
+Veneto,Negrar,Don Calabria,45.52918,10.93899
+Sardegna,Monserrato,HUB,39.25642,9.1444
+Sardegna,Sassari,ZooSS,40.72586,8.55552
+Sardegna,Sassari,AOUSS,40.72586,8.55552
+Toscana,Firenze,Careggi,43.77925,11.24626
+Toscana,Pisa,Unipi,43.70853,10.4036
+Toscana,Firenze,Meyer,43.77925,11.24626
+Toscana,Massa,Massa,44.03541,10.13927
+Toscana,Livorno,Livorno,43.54427,10.32615
+Toscana,Lucca,San Luca,43.84369,10.50447
+Toscana,Grosseto,Misericordia,42.75975,11.0719
+Toscana,Prato,Prato,43.8805,11.09699
+Toscana,Firenze,Synlab,43.77925,11.24626
+Toscana,Firenze,ISPRO,43.77925,11.24626
+Toscana,Arezzo,San Donato,43.46276,11.88068
+Toscana,Siena,Unisi,43.31822,11.33064
+Basilicata,Potenza,San Carlo,40.64175,15.80794
+Basilicata,Matera,Madonna delle Grazie,40.66599,16.60463

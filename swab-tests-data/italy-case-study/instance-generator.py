@@ -52,7 +52,7 @@ def get_regional_data(start_date='2020-04-01'):
             - a pandas dataframe with data for all regions
     """
 
-    italy = gpd.read_file('shp/gadm36_ITA_1.shp')
+    italy = gpd.read_file('gadm36_ITA_1.shp')
     start_date = datetime.strptime(start_date, "%Y-%m-%d").date()
     
     regional_data = dict()

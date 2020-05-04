@@ -4,7 +4,7 @@
 
 [![DOI](https://zenodo.org/badge/257270482.svg)](https://zenodo.org/badge/latestdoi/257270482)
 
-You can cite this repository via Zenodo, with the following BibTeX entry:
+You can cite this repository via Zenodo with the following BibTeX entry:
 
 ```bib
 @misc{covid_optimisation_github
@@ -18,6 +18,18 @@ You can cite this repository via Zenodo, with the following BibTeX entry:
 }
 ```
 
+You can cite the technical report on the optimisation of swab testing capacity with the following BibTeX entry:
+
+```bib
+@techreport{santini2020covid,
+    title={Optimising the assignment of swabs and reagents for PCR testing during a viral epidemic},
+    author={Santini, Alberto},
+    year={2020},
+    institution={Universitat Pompeu Fabra},
+    url={https://santini.in/files/papers/santini-2020.pdf}
+}
+```
+
 ## About
 
 This repository was created by [Alberto Santini](https://santini.in/), professor of Operational Research at [Universitat Pompeu Fabra](https://upf.edu/).
@@ -26,14 +38,14 @@ It contains optimisation models and software to optimise decisions related to th
 ### Main links
 
 * [Interactive dashboard](https://santini.in/covid/) with results (optimisation of swab testing capacity, Italy case study).
-* [Technical report](https://santini.in/files/tech-rep-swabs.pdf) on the optimisation of swab testing capacity.
+* [Technical report](https://santini.in/files/papers/santini-2020.pdf) on the optimisation of swab testing capacity.
 
 ![dashboard-screenshot.png](https://github.com/alberto-santini/covid-optimisation/raw/master/images/dashboard-screenshot.png)
 
 ### Contents of the repository
 
 * Folder `model-implementation` contains the implemented models. The software is in C++ and uses CMake for configuration. The solver [Gurobi](https://www.gurobi.com/) is necessary to run the software. All software is released under the GPLv3 license (see file `LICENSE`).
-* Folder `swab-tests-data` contains data for the problem of increasing swab tests capacity. Find a description of this problem and a mathematical model to solve it in our [technical report](https://santini.in/files/tech-rep-swabs.pdf).
+* Folder `swab-tests-data` contains data for the problem of increasing swab tests capacity. Find a description of this problem and a mathematical model to solve it in our [technical report](https://santini.in/files/papers/santini-2020.pdf).
     * Subfolder `italy-case-study` contains data (and the programme to generate it) relative to swabs tested in Italy during the period 01-13 April, 2020.
     * Subfolder `synthetic-data` contains a generator to produce simulated data, used to test how the model behaves under different scenarios.
 
@@ -61,7 +73,7 @@ Some regions, such as Lombardia, Piemonte, Emilia Romagna or Campania have good 
 
 ### Swab test optimisation - synthetic data
 
-A detailed description of the generation process for the synthetic instances is in the [technical report](https://santini.in/files/tech-rep-swabs.pdf) (Section 6.2).
+A detailed description of the generation process for the synthetic instances is in the [technical report](https://santini.in/files/papers/santini-2020.pdf) (Section 6.2).
 Because the dataset consists of 60480 instances, amounting to several GB of data, rather than providing the instances we give a script to generate them: `synthetic-data/instance-generator.py`.
 The instances created in this way will have name `s-<N>.json`, where `<N>` is a progressive number.
 The generator also creates a file `inst-directory.csv`, which lists the instance generation parameter used to create each instance.

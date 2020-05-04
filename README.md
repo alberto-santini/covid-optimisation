@@ -69,4 +69,4 @@ The generator also creates a file `inst-directory.csv`, which lists the instance
 ![example-synthetic-instance.png](https://github.com/alberto-santini/covid-optimisation/raw/master/images/example-synthetic-instance.png)
 
 The picture above shows an example of synthetic instance.
-Dots correspond to laboratories (the larger the dot, the higher the demand), stars to factories and lines denote regional boundaries.
+Dots correspond to laboratories (the larger the dot, the higher the demand in the lab's region), stars to factories and lines denote regional boundaries.

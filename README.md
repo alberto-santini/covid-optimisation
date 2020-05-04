@@ -1,5 +1,23 @@
 # Optimisation tools for the COVID-19 pandemic
 
+## Citing this work
+
+![DOI](https://zenodo.org/badge/257270482.svg)](https://zenodo.org/badge/latestdoi/257270482)
+
+This repository can be cited via Zenodo, with the following BibTeX entry:
+
+```bib
+@misc{covid_optimisation_github
+    title={Optimisation tools for the COVID-19 pandemic},
+    author={Santini, Alberto},
+    date={2020-05-04},
+    year={2020},
+    howpublished={Github repository},
+    doi={10.5281/zenodo.3785566},
+    url={https://github.com/alberto-santini/covid-optimisation/}
+}
+```
+
 ## About
 
 This repository was created by [Alberto Santini](https://santini.in/), professor of Operational Research at [Universitat Pompeu Fabra](https://upf.edu/).

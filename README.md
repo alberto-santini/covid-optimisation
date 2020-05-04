@@ -17,7 +17,7 @@ It contains optimisation models and software to optimise decisions related to th
 * Folder `model-implementation` contains the implemented models. The software is written in C++ and uses CMake for configuration. The solver [Gurobi](https://www.gurobi.com/) is necessary to run the software. All software is released under the GPLv3 license (see file `LICENSE`).
 * Folder `swab-tests-data` contains data for the problem of increasing swab tests capacity. Find a description of this problem and a mathematical model to solve it in this [technical report](https://santini.in/files/tech-rep-swabs.pdf), which is updated constantly.
     * Subfolder `italy-case-study` contains data (and the programme to generate it) relative to swabs tested in Italy during the period 01-13 April, 2020.
-    * Subfolder `synthetic-data` contains simulated data used to test how the model behaves under different scenarios.
+    * Subfolder `synthetic-data` contains a generator to produce simulated data, used to test how the model behaves under different scenarios.
 
 ## Data Generation
 
@@ -29,7 +29,7 @@ We start from the publicly available data sources:
 
 * A list of laboratories which are certified to test swabs for COVID-19: `italy_labs_coords.csv`.
 * A list of factories in Italy, which are certified to produce test kits: `italy_factories_coords.csv`.
-* Data about the number of swabs tested each day, region-by-region, released by the Italian Civil Defense department: `dpc-covid19-ita-regioni.csv`.
+* Data about the number of swabs tested each day, region-by-region, released by the Italian Civil Defence department: `dpc-covid19-ita-regioni.csv`.
 
 We first estimate how many swabs regions would have liked to test each day, if they had enough reagents.
 This number is calculated from the actual number they tested, times some region-dependent multiplier which we estimate based on news and press releases (see `italy-case-study/instance-generator.py` for the precise numbers).
@@ -43,4 +43,12 @@ Some regions, such as Lombardia, Piemonte, Emilia Romagna or Campania have good 
 
 ### Swab test optimisation - synthetic data
 
-TODO.
+The generation process for the synthetic instances is described in detail in the [technical report](https://santini.in/files/tech-rep-swabs.pdf) (Section 6.2).
+Because the dataset consists of 60480 instances, amounting to several GB of data, rather than providing the instances we give a script to generate them: `synthetic-data/instance-generator.py`.
+The instances created in this way will have name `s-<N>.json`, where `<N>` is a progressive number.
+The generator also creates a file `inst-directory.csv`, which lists the instance generation parameter used to create each instance.
+
+![example-synthetic-instance.png](https://github.com/alberto-santini/covid-optimisation/raw/master/images/example-synthetic-instance.png)
+
+The picture above shows an example of synthetic instance.
+Dots correspond to laboratories (the larger the dot, the higher the demand), stars to factories and lines denote regional boundaries.

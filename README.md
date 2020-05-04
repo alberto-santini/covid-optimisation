@@ -2,7 +2,7 @@
 
 ## Citing this work
 
-![DOI](https://zenodo.org/badge/257270482.svg)](https://zenodo.org/badge/latestdoi/257270482)
+[![DOI](https://zenodo.org/badge/257270482.svg)](https://zenodo.org/badge/latestdoi/257270482)
 
 This repository can be cited via Zenodo, with the following BibTeX entry:
 

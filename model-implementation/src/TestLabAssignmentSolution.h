@@ -44,7 +44,8 @@ namespace covid {
 
     struct TestLabAssignmentSolution {
         const TestLabAssignmentInstance& instance;
-        std::vector<MaterialMovement> reagent_mov;
+        std::vector<MaterialMovement> reagent_fac_lab_mov;
+        std::vector<MaterialMovement> reagent_lab_lab_mov;
         std::vector<MaterialMovement> swab_mov;
         std::vector<MaterialStorage> reagent_fac_store;
         std::vector<MaterialStorage> reagent_lab_store;

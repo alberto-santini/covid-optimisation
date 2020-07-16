@@ -20,13 +20,14 @@ namespace covid {
         }
     }
 
-    std::optional<TestLabAssignmentSolution> TestLabAssignmentSolver::solve_moo_model() const {
+    std::optional<TestLabAssignmentSolution> TestLabAssignmentSolver::solve_moo_model(bool transshipments) const {
         GRBEnv env{};
         GRBModel model{env};
 
         // Variables:
 
         auto fac_lab_day_reagent_mov = mk_vec3(i.n_factories, i.n_labs, i.n_days); // x
+        auto lab_lab_day_reagent_mov = mk_vec3(i.n_labs, i.n_labs, i.n_days);      // x
         auto lab_lab_day_swab_mov = mk_vec3(i.n_labs, i.n_labs, i.n_days);         // y
         auto lab_day_swab_store = mk_vec2(i.n_labs, i.n_days);                     // z
         auto lab_day_swab_test = mk_vec2(i.n_labs, i.n_days);                      // w
@@ -37,12 +38,18 @@ namespace covid {
         auto lab_day_swab_receive = mk_vec2(i.n_labs, i.n_days);                   // gamma^-
         auto lab_day_swab_send = mk_vec2(i.n_labs, i.n_days);                      // gamma^+
 
+        auto fac_lab_day_reagent_mov_bool = mk_vec3(i.n_factories, i.n_labs, i.n_days); // 0 if x==0, 1 if x>0
+        auto lab_lab_day_reagent_mov_bool = mk_vec3(i.n_labs, i.n_labs, i.n_days);      // 0 if x==0, 1 if x>0
+        auto lab_lab_day_swab_mov_bool = mk_vec3(i.n_labs, i.n_labs, i.n_days);         // 0 if y==0, 1 if y>0
+
         for(auto r = 0u; r < i.n_factories; ++r) {
             for(auto l = 0u; l < i.n_labs; ++l) {
                 for(auto t = 0u; t < i.n_days; ++t) {
                     fac_lab_day_reagent_mov[r][l][t] = model.addVar(0.0,
                             (i.fac_lab_compatible[r][l] ? i.fac_day_production[r][t] : 0u),
                             0.0, GRB_INTEGER);
+                    fac_lab_day_reagent_mov_bool[r][l][t] = model.addVar(0.0,
+                            (i.fac_lab_compatible[r][l] ? 1u : 0u), 0.0, GRB_BINARY);
                 }
             }
             for(auto t = 0u; t < i.n_days; ++t) {
@@ -53,9 +60,21 @@ namespace covid {
         for(auto l = 0u; l < i.n_labs; ++l) {
             for(auto l2 = 0u; l2 < i.n_labs; ++l2) {
                 for(auto t = 0u; t < i.n_days; ++t) {
+                    if(transshipments) {
+                        lab_lab_day_reagent_mov[l][l2][t] = model.addVar(0.0,
+                                (i.lab_lab_compatible[l][l2] ? i.reg_max_inbound_swabs[i.lab_region[l2]] : 0u),
+                                0.0, GRB_INTEGER);
+
+                        lab_lab_day_reagent_mov_bool[l][l2][t] = model.addVar(0.0,
+                                (i.lab_lab_compatible[l][l2] ? 1u : 0u), 0.0, GRB_BINARY);
+                    }
+
                     lab_lab_day_swab_mov[l][l2][t] = model.addVar(0.0,
                             (i.lab_lab_compatible[l][l2] ? i.reg_max_inbound_swabs[i.lab_region[l2]] : 0u),
                             0.0, GRB_INTEGER);
+
+                    lab_lab_day_swab_mov_bool[l][l2][t] = model.addVar(0.0,
+                            (i.lab_lab_compatible[l][l2] ? 1u : 0u), 0.0, GRB_BINARY);
                 }
             }
 
@@ -80,6 +99,16 @@ namespace covid {
                     for(auto r = 0u; r < i.n_factories; ++r) {
                         for(auto l : i.reg_labs[j]) {
                             expr += fac_lab_day_reagent_mov[r][l][t];
+                        }
+                    }
+
+                    if(transshipments) {
+                        for(auto l2 = 0u; l2 < i.n_labs; ++l2) {
+                            for(auto l : i.reg_labs[j]) {
+                                if(i.lab_lab_compatible[l][l2]) {
+                                    expr += lab_lab_day_reagent_mov[l2][l][t];
+                                }
+                            }
                         }
                     }
 
@@ -139,6 +168,14 @@ namespace covid {
                     }
                 }
 
+                if(transshipments) {
+                    for(auto l2 = 0u; l2 < i.n_labs; ++l2) {
+                        if(i.lab_lab_compatible[l][l2]) {
+                            rhs += lab_lab_day_reagent_mov[l][l2][0u];
+                        }
+                    }
+                }
+
                 model.addConstr(lhs == rhs);
                 model.addConstr(lab_day_swab_test[l][0u] <= lhs); // TMP
             }
@@ -167,6 +204,15 @@ namespace covid {
                     for(auto r = 0u; r < i.n_factories; ++r) {
                         if(i.fac_lab_compatible[r][l]) {
                             lhs += fac_lab_day_reagent_mov[r][l][t];
+                        }
+                    }
+
+                    if(transshipments) {
+                        for(auto l2 = 0u; l2 < i.n_labs; ++l2) {
+                            if(i.lab_lab_compatible[l][l2]) {
+                                lhs += lab_lab_day_reagent_mov[l2][l][t - 1u];
+                                rhs += lab_lab_day_reagent_mov[l][l2][t];
+                            }
                         }
                     }
 
@@ -248,6 +294,77 @@ namespace covid {
             }
         }
 
+        // Setting boolean variables:
+        for(auto t = 0u; t < i.n_days; ++t) {
+            for(auto l = 0u; l < i.n_labs; ++l) {
+                for(auto r = 0u; r < i.n_factories; ++r) {
+                    const auto M = std::min(i.fac_day_production[r][t], i.reg_max_inbound_reagents[i.lab_region[l]]);
+
+                    model.addConstr(
+                        fac_lab_day_reagent_mov[r][l][t] <=
+                        M * fac_lab_day_reagent_mov_bool[r][l][t]);
+                }
+
+                for(auto l2 = 0u; l2 < i.n_labs; ++l2) {
+                    model.addConstr(
+                        lab_lab_day_swab_mov[l][l2][t] <=
+                        i.reg_max_inbound_swabs[i.lab_region[l2]] * lab_lab_day_swab_mov_bool[l][l2][t]);
+
+                    if(transshipments) {
+                        model.addConstr(
+                            lab_lab_day_reagent_mov[l][l2][t] <=
+                            i.reg_max_inbound_reagents[i.lab_region[l2]] * lab_lab_day_reagent_mov_bool[l][l2][t]);
+                    }
+                }
+            }
+        }
+
+        // Constraints with boolean variables:
+
+        for(auto t = 0u; t < i.n_days; ++t) {
+            for(auto l1 = 0u; l1 < i.n_labs; ++l1) {
+                for(auto l2 = l1 + 1u; l2 < i.n_labs; ++l2) {
+                    for(auto r1 = 0u; r1 < i.n_factories; ++r1) {
+                        if(!i.fac_lab_compatible[r1][l2]) { continue; }
+
+                        for(auto r2 = r1 + 1u; r2 < i.n_factories; ++r2) {
+                            if(!i.fac_lab_compatible[r2][l1]) { continue; }
+
+                            if(i.fac_lab_distance[r1][l1] < i.fac_lab_distance[r1][l2] &&
+                               i.fac_lab_distance[r2][l2] < i.fac_lab_distance[r2][l1])
+                            {
+                                model.addConstr(
+                                    fac_lab_day_reagent_mov_bool[r2][l1][t] +
+                                    fac_lab_day_reagent_mov_bool[r1][l2][t] <= 1);
+                            }
+                        }
+                    }
+
+                    for(auto ll1 = l2 + 1u; ll1 < i.n_labs; ++ll1) {
+                        if(!i.lab_lab_compatible[ll1][l2]) { continue; }
+
+                        for(auto ll2 = ll1 + 1u; ll2 < i.n_labs; ++ll2) {
+                            if(!i.lab_lab_compatible[ll2][l1]) { continue; }
+
+                            if(i.lab_lab_distance[l1][ll1] < i.lab_lab_distance[l2][ll1] &&
+                               i.lab_lab_distance[l2][ll2] < i.lab_lab_distance[l1][ll2])
+                            {
+                                if(transshipments) {
+                                    model.addConstr(
+                                        lab_lab_day_reagent_mov_bool[ll2][l1][t] +
+                                        lab_lab_day_reagent_mov_bool[ll1][l2][t] <= 1);
+
+                                    model.addConstr(
+                                        lab_lab_day_swab_mov_bool[ll2][l1][t] +
+                                        lab_lab_day_swab_mov_bool[ll1][l2][t] <= 1);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         // Objective functions:
 
         // All objectives must have the same sense.
@@ -309,7 +426,7 @@ namespace covid {
                     for(auto t = 0u; t < i.n_days; ++t) {
                         const uint32_t qty = std::round(fac_lab_day_reagent_mov[r][l][t].get(GRB_DoubleAttr_X));
                         if(qty > 0u) {
-                            s.reagent_mov.push_back({Material::REAGENT, r, l, t, qty});
+                            s.reagent_fac_lab_mov.push_back({Material::REAGENT, r, l, t, qty});
                         }
                     }
                 }
@@ -327,9 +444,18 @@ namespace covid {
             for(auto l2 = 0u; l2 < i.n_labs; ++l2) {
                 if(i.lab_lab_compatible[l][l2]) {
                     for(auto t = 0u; t < i.n_days; ++t) {
-                        const uint32_t qty = std::round(lab_lab_day_swab_mov[l][l2][t].get(GRB_DoubleAttr_X));
-                        if(qty > 0u) {
-                            s.swab_mov.push_back({Material::SWAB, l, l2, t, qty});
+                        {
+                            const uint32_t qty = std::round(lab_lab_day_swab_mov[l][l2][t].get(GRB_DoubleAttr_X));
+                            if(qty > 0u) {
+                                s.swab_mov.push_back({Material::SWAB, l, l2, t, qty});
+                            }
+                        }
+                        
+                        if(transshipments) {
+                            const uint32_t qty = std::round(lab_lab_day_reagent_mov[l][l2][t].get(GRB_DoubleAttr_X));
+                            if(qty > 0u) {
+                                s.reagent_lab_lab_mov.push_back({Material::REAGENT, l, l2, t, qty});
+                            }
                         }
                     }
                 }

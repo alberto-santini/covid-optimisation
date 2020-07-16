@@ -1,3 +1,4 @@
+from scipy.stats import truncnorm
 import numpy as np
 import random
 import json
@@ -25,6 +26,30 @@ def get_labs(n_labs, regions, low=0, high=100):
         labs.append(get_rnd_coords_nearby(region, low=low, high=high))
         
     return labs
+
+def get_lab_lab_distance(labs):
+    dist = list()
+
+    for l1 in labs:
+        dist.append(list())
+
+        for l2 in labs:
+            d = np.sqrt(sqdist(l1, l2))
+            dist[-1].append(np.round(d, decimals=2))
+
+    return dist
+
+def get_fac_lab_distance(labs, factories):
+    dist = list()
+
+    for f in factories:
+        dist.append(list())
+
+        for l in labs:
+            d = np.sqrt(sqdist(f, l))
+            dist[-1].append(np.round(d, decimals=2))
+
+    return dist
 
 def get_lab_regions(labs, regions):
     lab_regions = list()
@@ -232,6 +257,8 @@ if __name__ == "__main__":
                     factories = get_rnd_coords(n_factories, low=strict_low, high=strict_high)
                     lab_regions = get_lab_regions(labs, regions)
                     labs_per_region = get_labs_per_region(lab_regions)
+                    lab_lab_distance = get_lab_lab_distance(labs)
+                    fac_lab_distance = get_fac_lab_distance(labs, factories)
                     
                     reg_demand = get_reg_demand(
                         n_regions,
@@ -304,7 +331,9 @@ if __name__ == "__main__":
                                             'fac_day_production': fac_day_production,
                                             'reg_day_demand': reg_demand,
                                             'lab_lab_compatible': lab_lab_comp,
-                                            'fac_lab_compatible': fac_lab_comp
+                                            'lab_lab_distance': lab_lab_distance,
+                                            'fac_lab_compatible': fac_lab_comp,
+                                            'fac_lab_distance': fac_lab_distance
                                         }
 
                                         with open(f"s-{inst_n}.json", 'w') as f:

@@ -29,9 +29,17 @@ namespace covid {
                     }
                 }
 
-                for(const auto& m : s.reagent_mov) {
+                for(const auto& m : s.reagent_fac_lab_mov) {
                     if(m.destination_id == l && m.day == t) {
                         out << "\t\tReceived " << m.qty << " reagents from Factory " << m.origin_id << "\n";
+                    }
+                }
+                for(const auto& m : s.reagent_lab_lab_mov) {
+                    if(m.destination_id == l && m.day == t) {
+                        out << "\t\tReceived " << m.qty << " reagents from Lab " << m.origin_id << "\n";
+                    }
+                    if(m.origin_id == l && m.day == t) {
+                        out << "\t\tSent " << m.qty << " reagents to Lab " << m.destination_id << "\n";
                     }
                 }
                 for(const auto& tst : s.tests_assigned) {
@@ -99,7 +107,8 @@ namespace covid {
         j["avg_wait_time_tested_swabs"] =
                 (double)(total_swabs_requested - untested_swabs_at_end) /
                 (double)(total_waiting_swabs);
-        j["reagent_movements"] = reagent_mov;
+        j["reagent_fac_lab_movements"] = reagent_fac_lab_mov;
+        j["reagent_lab_lab_movements"] = reagent_lab_lab_mov;
         j["swab_movements"] = swab_mov;
         j["reagents_stored_at_factories"] = reagent_fac_store;
         j["reagents_stored_at_labs"] = reagent_lab_store;

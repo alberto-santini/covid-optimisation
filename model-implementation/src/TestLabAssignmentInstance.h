@@ -34,6 +34,8 @@ namespace covid {
         std::vector<std::vector<uint32_t>> reg_labs;
         std::vector<std::vector<bool>> lab_lab_compatible;
         std::vector<std::vector<bool>> fac_lab_compatible;
+        std::vector<std::vector<float>> lab_lab_distance;
+        std::vector<std::vector<float>> fac_lab_distance;
 
         explicit TestLabAssignmentInstance(const std::string& inst_file);
     };

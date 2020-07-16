@@ -56,8 +56,10 @@ namespace covid {
         }
 
         lab_lab_compatible.resize(n_labs);
+        lab_lab_distance.resize(n_labs);
         for(auto l1 = 0u; l1 < n_labs; ++l1) {
             lab_lab_compatible[l1] = std::vector<bool>(n_labs);
+            lab_lab_distance[l1] = j["lab_lab_distance"][l1].get<std::vector<float>>();
 
             auto jrow = j["lab_lab_compatible"][l1].get<std::vector<uint32_t>>();
             for(auto l2 = 0u; l2 < n_labs; ++l2) {
@@ -66,12 +68,14 @@ namespace covid {
         }
 
         fac_lab_compatible.resize(n_factories);
+        fac_lab_distance.resize(n_factories);
         fac_day_production.resize(n_factories);
         for(auto r = 0u; r < n_factories; ++r) {
             fac_lab_compatible[r] = std::vector<bool>(n_labs);
+            fac_lab_distance[r] = j["fac_lab_distance"][r].get<std::vector<float>>();
             fac_day_production[r] = j["fac_day_production"][r].get<std::vector<uint32_t>>();
 
-            auto jrow = j["fac_lab_compatible"][r].get<std::vector<uint32_t>>();
+            const auto jrow = j["fac_lab_compatible"][r].get<std::vector<uint32_t>>();
             for(auto l = 0u; l < n_labs; ++l) {
                 fac_lab_compatible[r][l] = (jrow[l] == 1u);
             }

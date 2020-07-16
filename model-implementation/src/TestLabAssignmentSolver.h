@@ -15,7 +15,7 @@ namespace covid {
 
         explicit TestLabAssignmentSolver(const TestLabAssignmentInstance& instance) : i{instance} {}
 
-        std::optional<TestLabAssignmentSolution> solve_moo_model() const;
+        std::optional<TestLabAssignmentSolution> solve_moo_model(bool transshipments) const;
     };
 }
 

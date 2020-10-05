@@ -4,10 +4,10 @@
 
 [![DOI](https://zenodo.org/badge/257270482.svg)](https://zenodo.org/badge/latestdoi/257270482)
 
-You can cite this repository via Zenodo with the following BibTeX entry:
+You can cite this repository via Zenodo with the following BibLaTeX entry:
 
 ```bib
-@misc{covid_optimisation_github
+@misc{covid_optimisation_github,
     title={Optimisation tools for the COVID-19 pandemic},
     author={Santini, Alberto},
     date={2020-05-04},
@@ -18,15 +18,17 @@ You can cite this repository via Zenodo with the following BibTeX entry:
 }
 ```
 
-You can cite the technical report on the optimisation of swab testing capacity with the following BibTeX entry:
+You can cite the paper on the optimisation of swab testing capacity with the following BibLaTeX entry:
 
 ```bib
-@techreport{santini2020covid,
-    title={Optimising the assignment of swabs and reagents for PCR testing during a viral epidemic},
-    author={Santini, Alberto},
-    year={2020},
-    institution={Universitat Pompeu Fabra},
-    url={https://santini.in/files/papers/santini-2020.pdf}
+@article{santini2020covid,
+  title={Optimising the assignment of swabs and reagents for PCR testing during a viral epidemic},
+  author={Santini, Alberto},
+  journal={{Omega}},
+  pubstate={in press},
+  year={2020},
+  doi={10.1016/j.omega.2020.102341},
+  url={https://santini.in/files/papers/santini-2020.pdf}
 }
 ```
 

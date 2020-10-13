@@ -219,7 +219,9 @@ namespace covid {
                     model.addConstr(lhs == rhs);
                     model.addConstr(lab_day_swab_test[l][t] <= lhs); // TMP
                 }
-
+            }
+                         
+            for(auto t = 0u; t < i.n_days; ++t) {
                 model.addGenConstrIndicator(
                         lab_day_at_capacity[l][t], false, lab_day_swab_test[l][t] <= i.lab_capacity[l] - 1u);
 

@@ -25,7 +25,7 @@ You can cite the paper on the optimisation of swab testing capacity with the fol
   title={Optimising the assignment of swabs and reagents for PCR testing during a viral epidemic},
   author={Santini, Alberto},
   journal={{Omega}},
-  pubstate={in press},
+  volume={102},
   year={2020},
   doi={10.1016/j.omega.2020.102341},
   url={https://santini.in/files/papers/santini-2020.pdf}

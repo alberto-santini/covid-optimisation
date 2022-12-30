@@ -12,7 +12,7 @@ url: https://github.com/alberto-santini/covid-optimisation
 preferred-citation:
   type: article
   authors:
-  - familiy-names: "Santini"
+  - family-names: "Santini"
     given-names: "Alberto"
     orcid: "https://orcid.org/0000-0002-0440-0357"
   doi: 10.1016/j.omega.2020.102341
